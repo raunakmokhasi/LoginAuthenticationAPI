@@ -27,7 +27,7 @@ It returns the TokenID generated after signing up the user.
 
 2. On completion of the code, we can use the Swagger Online Editor to document it. Swagger provides the [http://editor.swagger.io/](http://editor.swagger.io/) which can be used to quickly configure the YAML definitions. You can either write the documentation directly in JSON format or write it in YAML and then convert it to JSON through this website. I personally followed the latter as I found it easier.
 
-
+![Alt text](https://github.com/raunakmokhasi/LoginAuthenticationAPI/blob/master/Screens/SwaggerScreen1.JPG?raw=true "Online Swagger Editor")
 
 3. Swagger generates the documentation for the API using a simple YAML file that describes your API (routes, verbs, params and other definitions). This YAML file can then later be converted into JSON format to be integrated with your APIs on your local machine. The YAML file has tags used to describe each function of the API and is really intuitive to understand.
 
@@ -48,6 +48,9 @@ It returns the TokenID generated after signing up the user.
 
 4. Once the REST API is defined by configuring the endpoint URLs with the appropriate HTTP/HTTPs security, input parameters and headers we can use the &quot;Try it out&quot; operation to test the API (similar to Postman). Here the parameter content type needs to be selected (it is &#39;application/json&#39; in my case). On filling the appropriate details of the POST Request in JSON we can run it by clicking on the execute button. Based on the content, if the POST request is valid we get a server response with the relevant details.
 
+![Alt text](https://github.com/raunakmokhasi/LoginAuthenticationAPI/blob/master/Screens/SwaggerScreen2.JPG?raw=true "Swagger Request 1")
+
+![Alt text](https://github.com/raunakmokhasi/LoginAuthenticationAPI/blob/master/Screens/SwaggerScreen3.JPG?raw=true "Swagger Request 2")
 
 
 For further information regarding Swagger, please check out –
