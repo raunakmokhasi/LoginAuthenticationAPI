@@ -139,4 +139,4 @@ app.get("/getUserInfo", auth, async (req, res) => { //Retrieve the logged in use
   }
 });
 
-//module.exports = app;
+module.exports = app;

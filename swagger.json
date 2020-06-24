@@ -153,22 +153,11 @@
         ],
         "parameters": [
           {
-            "in": "body",
-            "name": "User",
-            "description": "User object containing TokenID to retrieve the User in the database",
+            "name": "token",
+            "in": "header",
+            "description": "Authorization header containing TokenID to retrieve the User in the database",
             "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "tokenID"
-              ],
-              "properties": {
-                "tokenID": {
-                  "type": "string",
-                  "example": "poiuytetsxd7rewqas6dfghjk4nbvcxzswedcv9gtyhbnjikmkop"
-                }
-              }
-            }
+            "type": "string"
           }
         ],
         "responses": {
