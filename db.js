@@ -13,4 +13,21 @@ const InitiateMongoServer = async () => {
   }
 };
 
+if (process.env.NODE_ENV === 'test') {
+  var Mockgoose = require('mockgoose').Mockgoose;
+  var mockgoose = new Mockgoose(mongoose);
+  mockgoose.prepareStorage().then(function() {
+    const InitiateMongoServer = async () => {
+      try {
+        await mongoose.connect(MONGOURI, { useNewUrlParser: true });
+        console.log("Successfully connected to MOCK-GOOSE");
+      } 
+      catch (e) {
+        console.log(e);
+        throw e;
+      }
+    };		
+  });
+}
+
 module.exports = InitiateMongoServer;

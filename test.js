@@ -51,7 +51,7 @@ describe('Get User Info Test', function() {
             .get('/getUserInfo')    
             .set('Accept', 'application/json')
             .set('Content-Type', 'application/json')
-            .set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVmMzAzMGU0ODI4NWEzOGUwZTkyZDhhIn0sImlhdCI6MTU5Mjk4NjQxNywiZXhwIjoxNTkyOTkwMDE3fQ.1qZPrwvjwvMGQmsYFE2h6onkjEN-olRAvyFG0ZNCCbo')
+            .set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVmMzAzMGU0ODI4NWEzOGUwZTkyZDhhIn0sImlhdCI6MTU5MzAwMzI3MiwiZXhwIjoxNTkzMDA2ODcyfQ.1Yj7yGSUWkqvaf5XCO6xwhA6WMr0qtGxQAK4z5THCbw')
             .expect(200)   //Test for Response OK Code - 200
             .expect('Content-Type', /json/) //Test for Content Type - application/json
             .expect(function(response) {    //Tests to check Response Body
@@ -72,3 +72,4 @@ describe('Get User Info Test', function() {
     });
 
 });
+
