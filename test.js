@@ -28,6 +28,7 @@ describe('Login Function Test', function() {
            .expect(function(response) {    //Tests to check Response Body
               expect(response.body).not.to.be.empty; 
               expect(response.body).to.be.an('object');
+              expect(response.body).to.have.property('token');
            })
            .end(done);
     }); 
@@ -46,17 +47,20 @@ describe('Login Function Test', function() {
 
 
 describe('Get User Info Test', function() {
-    it('The test should PASS if the User Info i.e Token is valid and retrieved successfully', function(done) {
+    it('The test should PASS if the User Info is retrieved successfully and the Token is valid ', function(done) {
         request(app)
             .get('/getUserInfo')    
             .set('Accept', 'application/json')
             .set('Content-Type', 'application/json')
-            .set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVmMzAzMGU0ODI4NWEzOGUwZTkyZDhhIn0sImlhdCI6MTU5MzAwMzI3MiwiZXhwIjoxNTkzMDA2ODcyfQ.1Yj7yGSUWkqvaf5XCO6xwhA6WMr0qtGxQAK4z5THCbw')
+            .set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVmMzAzMGU0ODI4NWEzOGUwZTkyZDhhIn0sImlhdCI6MTU5MzA5MDI1NSwiZXhwIjoxNTkzMDkzODU1fQ.t2yQpAwGPtDMr0TNDC72damF0r-3pWaGi1VmhVM9QGw')
             .expect(200)   //Test for Response OK Code - 200
             .expect('Content-Type', /json/) //Test for Content Type - application/json
             .expect(function(response) {    //Tests to check Response Body
               expect(response.body).not.to.be.empty; 
               expect(response.body).to.be.an('object');
+              expect(response.body).to.have.property('email');
+              expect(response.body).to.have.property('username');
+              expect(response.body).to.have.property('password');
            })
            .end(done);
     }); 
