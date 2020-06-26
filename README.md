@@ -4,7 +4,8 @@ This is a Login Authentication API built using Express (minimal and flexible Nod
 
 _Note – Use the command &#39;npm i express mongoose mockgoose chai mocha sinon express-validator body-parser bcryptjs jsonwebtoken &#39; to install the dependencies._
 
-In order to run the code just use the command &quot;npm run start&quot; on your Bash Terminal._
+_In order to run the code just use the command &quot;npm run start&quot; on your Bash Terminal._
+_(In order to run the tests, use teh command &quot;npm run test&quot; on your Bash Terminal. We have used Mockgoose to mock the operations of the database)_
 
 _Make sure you change the value of the_ _ **MONGOURI** _ _in the db.js file with your MongoDB Definitions (database name, username and password)._
 
