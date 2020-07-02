@@ -24,7 +24,6 @@ const bcrypt = require("bcryptjs"); //Secure way to store passwords in Database 
 const auth = require("./auth");
 const User = require("./UserSchema");
 
-
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocs = require('./swagger.json');
@@ -128,7 +127,7 @@ app.post(
 );
 
 
-app.get("/getUserInfo", auth, async (req, res) => { //Retrieve the logged in user using the token
+app.get("/getUserInfo", auth, async (req, res) => { //Retrieve the logged in user using the token (received from auth.js)
   try {
     const user = await User.findById(req.user.id);
     res.json(user);
