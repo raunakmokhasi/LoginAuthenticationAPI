@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
 
+const logger = require("./logger");
+
 //Auth Middleware is used to verify the token and retrieve the user based on the token payload
 //Used in /getUserInfo to get the information of a user based on the Token ID
 
@@ -15,6 +17,7 @@ module.exports = function(req, res, next) {
   } 
   catch (err) {
     console.error(err);
+    logger.log('error', new Error(e));
     res.status(500).send({ message: "Invalid Token" });
   } 
 };

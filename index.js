@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");  //Used to parse incoming requests in a middleware before your handlers
 const InitiateMongoServer = require("./db");
+const logger = require("./logger");
 
 InitiateMongoServer();
 
@@ -13,8 +14,11 @@ app.get("/", (req, res) => {
   res.json({ message: "The API has started working!" });
 });
 
+
 app.listen(PORT, (req, res) => {
-  console.log(`The server has been initiated at PORT ${PORT}`);
+  //console.log(`The server has been initiated at PORT ${PORT}`);
+  console.log();
+  logger.log('info',`The server has been initiated at PORT ${PORT}`);
 });
 
 
@@ -29,11 +33,6 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocs = require('./swagger.json');
 
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-
-app.get("/", (req, res) => {
-  res.json({ message: "The API has started working!" });
-});
-
 
 app.post(
   "/signup",
@@ -120,7 +119,8 @@ app.post(
       );
     } 
     catch (e) {
-      console.error(e);
+      //console.error(e);
+      logger.log('error', new Error(e));
       res.status(500).json({ message: "Server Error" });
     }
   }

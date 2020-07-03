@@ -20,7 +20,8 @@
     "mockgoose": "^8.0.4",
     "mongoose": "^5.9.18",
     "swagger-jsdoc": "^4.0.0",
-    "swagger-ui-express": "^4.1.4"
+    "swagger-ui-express": "^4.1.4",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "mocha": "^8.0.1",
