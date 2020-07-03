@@ -2,7 +2,7 @@
 
 This is a Login Authentication API built using Express (minimal and flexible Node.js web application framework) and MongoDB as the Database. We are using the Express-Validator that prevents requests which include invalid username or password. We are also using bcryptjs as a secure method to store passwords in Database using Encryption Techniques (Generating salt and hashing). In addition to these, jsonwebtoken is used as a secure method to transmit information between parties as a JSON object with a Digital Signature.
 
-_Note – Use the command &#39;npm i express mongoose mockgoose chai mocha sinon express-validator body-parser bcryptjs jsonwebtoken &#39; to install the dependencies._
+_Note – Use the command &#39;npm i express mongoose mockgoose chai mocha winston supertest express-validator body-parser bcryptjs jsonwebtoken &#39; to install the dependencies._
 
 _In order to run the code just use the command &quot;npm run start&quot; on your Bash Terminal._
 _(In order to run the tests, use teh command &quot;npm run test&quot; on your Bash Terminal. We have used Mockgoose to mock the operations of the database)_
