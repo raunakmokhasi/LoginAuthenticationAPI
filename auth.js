@@ -1,11 +1,11 @@
 const jwt = require("jsonwebtoken");
 
-const logger = require("./logger");
+const winstonLogger = require("./winstonLogger");
 
 //Auth Middleware is used to verify the token and retrieve the user based on the token payload
 //Used in /getUserInfo to get the information of a user based on the Token ID
 
-module.exports = function(req, res, next) {
+module.exports = function(req, res, next) { //In this middleware function, "next" allows the next route handler in line to handle the request
   const token = req.header("token");
   if (!token) 
     return res.status(401).json({ message: "Error in Authentication" });
@@ -17,7 +17,7 @@ module.exports = function(req, res, next) {
   } 
   catch (err) {
     console.error(err);
-    logger.log('error', new Error(e));
+    winstonLogger.log('error', new Error(e));
     res.status(500).send({ message: "Invalid Token" });
   } 
 };

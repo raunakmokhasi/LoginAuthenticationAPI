@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");  //Used to parse incoming requests in a middleware before your handlers
 const InitiateMongoServer = require("./db");
-const logger = require("./logger");
+const winstonLogger = require("./winstonLogger");
 
 InitiateMongoServer();
 
@@ -12,13 +12,14 @@ app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
   res.json({ message: "The API has started working!" });
+  winstonLogger.log('info',`The API has started working!`);
 });
 
 
 app.listen(PORT, (req, res) => {
   //console.log(`The server has been initiated at PORT ${PORT}`);
   console.log();
-  logger.log('info',`The server has been initiated at PORT ${PORT}`);
+  winstonLogger.log('info',`The server has been initiated at PORT ${PORT}`);
 });
 
 
@@ -50,8 +51,9 @@ app.post(
     }
 
     const { username, email, password } = req.body;
+    //Here, as req.body's shape is based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. Thus we use body-parser to parse incoming requests in the middleware before the handlers
     try {
-      let user = await User.findOne({ email });
+      let user = await User.findOne({ email }); //MongoDB method to search the collection and find a record that matches the given parameter (in this case email)
       if (user) {
         return res.status(400).json({
           msg: "User Already Exists"
@@ -69,7 +71,7 @@ app.post(
       };
 
       jwt.sign(
-        payload, "raunakMokhasi", { expiresIn: 10000 },
+        payload, "raunakMokhasi", { expiresIn: '30d' }, //Token ID keeps changing as payload expires every month
         (err, token) => {
           if (err) throw err;
           res.status(200).json({ token });
@@ -98,6 +100,7 @@ app.post(
       });
     }
     const { email, password } = req.body;
+
     try {
       let user = await User.findOne({ email });
       if (!user)
@@ -111,7 +114,7 @@ app.post(
         user: { id: user.id }
       };
 
-      jwt.sign( payload, "raunakMokhasi", { expiresIn: 3600 },
+      jwt.sign( payload, "raunakMokhasi", { expiresIn: '30d' },
         (err, token) => {
           if (err) throw err;
           res.status(200).json({ token });
@@ -120,7 +123,7 @@ app.post(
     } 
     catch (e) {
       //console.error(e);
-      logger.log('error', new Error(e));
+      winstonLogger.log('error', new Error(e));
       res.status(500).json({ message: "Server Error" });
     }
   }

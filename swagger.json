@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "This is a Login Authentication API built using Express (minimal and flexible Node.js web application framework) and MongoDB as the Database.\nWe are using the Express-Validator that prevents requests which include invalid username or password.\nWe are using bcryptjs as a secure method to store passwords in Database using Encryption Techniques (Generating salt and hashing)\nWe are using jsonwebtoken as a secure method to transmit information between parties as a JSON object with a Digital Signature\n",
+    "description": "This is a Login Authentication API built using Express (minimal and flexible Node.js web application framework) and MongoDB as the Database.\nWe are using the Express-Validator that prevents requests which include invalid username or password.\nWe are using bcryptjs as a secure method to store passwords in Database using Encryption Techniques (Generating salt and hashing)\nWe are using jsonwebtoken as a secure method to transmit information between parties as a JSON object with a Digital Signature\nWe use body-parser to parse incoming requests in the middleware before the handlers.\n",
     "version": "1.0.0",
     "title": "Login Authentication API"
   },
