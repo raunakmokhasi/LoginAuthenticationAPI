@@ -1,3 +1,5 @@
+//Winston Code
+
 const winston = require('winston');
 
 const { createLogger, transports, format } = require('winston');
@@ -27,3 +29,30 @@ const logger = winston.createLogger({
 
 
 module.exports = logger;
+
+
+/*
+
+//BUNYAN CODE
+const path = require("path");
+const bunyan = require("bunyan");
+const level = process.env.NODE_LOGGING_LEVEL || "info";
+
+const bunyanLog = bunyan.createLogger({
+  name: "LoginAuthentication",
+  streams: [
+    {
+      level,
+      stream: process.stdout
+    },
+    {
+      level,
+      path: path.resolve(__dirname, "..", "..", "bunyanLogs.json")
+    }
+  ]
+});
+
+module.exports = bunyanLog
+
+
+*/
