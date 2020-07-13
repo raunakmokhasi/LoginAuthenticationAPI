@@ -12,7 +12,14 @@ describe('Signup Function Test', function() {
            .set('Accept', 'application/json')
            .set('Content-Type', 'application/json')
            .send({ username: 'test', email: 'test@test.com', password: 'test123' })
-           .expect(400)   //Test for Bad Response 500 - User already exists
+           .expect(400)   //Test for Bad Response 400 - User already exists
+           .expect('Content-Type', /json/)
+           .expect(function(response) {
+                expect(response.body).not.to.be.empty; 
+                expect(response.body).to.be.an('object');
+                expect(response.body).to.have.property('message');
+                expect(response.body.message).to.deep.equal("User Already Exists");
+            })
            .end(done);
     }); 
 });
@@ -40,7 +47,31 @@ describe('Login Function Test', function() {
            .set('Accept', 'application/json')
            .set('Content-Type', 'application/json')
            .send({ email: 'test98765@test.com', password: 'test12399' })
-           .expect(400)  //Test for Response 500 Bad Request - User does not existS
+           .expect(409)  //Test for Response 409 Bad Request - User does not exist
+           .expect('Content-Type', /json/)
+           .expect(function(response) {
+                expect(response.body).not.to.be.empty; 
+                expect(response.body).to.be.an('object');
+                expect(response.body).to.have.property('message');
+                expect(response.body.message).to.deep.equal("User does NOT Exist");
+            })
+           .end(done);
+    }); 
+
+    it('The test should PASS if the Login credentials are invalid (Password is incorrect)', function(done) {
+        request(app)
+           .post('/login')
+           .set('Accept', 'application/json')
+           .set('Content-Type', 'application/json')
+           .send({ email: 'test@test.com', password: 'test2499' })
+           .expect(401)  //Test for Response 401 Authentication Error - Incorrect Password Entered
+           .expect('Content-Type', /json/)
+           .expect(function(response) {
+                expect(response.body).not.to.be.empty; 
+                expect(response.body).to.be.an('object');
+                expect(response.body).to.have.property('message');
+                expect(response.body.message).to.deep.equal("Incorrect Password Entered!");
+            })
            .end(done);
     }); 
 

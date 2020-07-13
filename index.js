@@ -55,9 +55,7 @@ app.post(
     try {
       let user = await User.findOne({ email }); //MongoDB method to search the collection and find a record that matches the given parameter (in this case email)
       if (user) {
-        return res.status(400).json({
-          msg: "User Already Exists"
-        });
+        return res.status(400).json({ message: "User Already Exists" });
       }
 
       user = new User({ username, email, password });
@@ -104,11 +102,11 @@ app.post(
     try {
       let user = await User.findOne({ email });
       if (!user)
-        return res.status(400).json({ message: "User does NOT Exist" });
+        return res.status(409).json({ message: "User does NOT Exist" });
 
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch)
-        return res.status(400).json({ message: "Incorrect Password Entered!"});
+        return res.status(401).json({ message: "Incorrect Password Entered!"});
 
       const payload = {
         user: { id: user.id }
