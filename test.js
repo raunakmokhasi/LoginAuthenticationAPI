@@ -2,6 +2,7 @@ const request = require('supertest');
 const app = require('./index');
 const { header } = require('express-validator');
 const expect = require('chai').expect;
+const assert = require('chai').assert;
 
 
 describe('Signup Function Test', function() {
@@ -52,14 +53,16 @@ describe('Get User Info Test', function() {
             .get('/getUserInfo')    
             .set('Accept', 'application/json')
             .set('Content-Type', 'application/json')
-            .set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVmMzAzMGU0ODI4NWEzOGUwZTkyZDhhIn0sImlhdCI6MTU5NDAyNDQ4NCwiZXhwIjoxNTk2NjE2NDg0fQ.e7oPtPpy64GN6csVm2Ezavfftd566dw74hsVw58rjGY')
+            .set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVmMzAzMGU0ODI4NWEzOGUwZTkyZDhhIn0sImlhdCI6MTU5NDY0MjkwMiwiZXhwIjoxNTk3MjM0OTAyfQ.5ItDe9YjhtUs314NE98__qRjsiFxKsmxWbqCx7C5fqA')
             .expect(200)   //Test for Response OK Code - 200
             .expect('Content-Type', /json/) //Test for Content Type - application/json
             .expect(function(response) {    //Tests to check Response Body
               expect(response.body).not.to.be.empty; 
               expect(response.body).to.be.an('object');
               expect(response.body).to.have.property('email');
+              expect(response.body.email).to.deep.equal('test@test.com');
               expect(response.body).to.have.property('username');
+              expect(response.body.username).to.deep.equal('test');
               expect(response.body).to.have.property('password');
            })
            .end(done);
@@ -70,7 +73,7 @@ describe('Get User Info Test', function() {
             .get('/getUserInfo')    
             .set('Accept', 'application/json')
             .set('Content-Type', 'application/json')
-            .set('token', 'JhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVmMzAzMGU0ODI4NWEzOGUwZTkyZDhhIn0sImlhdCI6MTU5Mjk4NjQxNywiZXhwIjoxNTkyOTkwMDE3fQ.1qZPrwvjwvMGQmsYFE2h6onkjEN-olRAvyFG0ZNCCbo')
+            .set('token', 'bGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVmMzAzMGU0ODI4NWEzOGUwZTkyZDhhIn0sImlhdCI6MTU5NDE5ODcwMiwiZXhwIjoxNTk2NzkwNzAyfQ.h6fzdTzyNS3NsPhAJGSsVs0UwOnFmueoIRcLs0LWF8Y')
             .expect(500)  //Test for INVALID TOKEN (Server Error)
             .end(done);
     });

@@ -17,7 +17,7 @@ module.exports = function(req, res, next) { //In this middleware function, "next
   } 
   catch (err) {
     console.error(err);
-    winstonLogger.log('error', new Error(e));
+    winstonLogger.log('error', new Error(err));
     res.status(500).send({ message: "Invalid Token" });
   } 
 };
