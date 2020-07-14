@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "loginStart": "nodemon index.js",
-    "test": "mocha --timeout 10000 || exit 0"
+    "test": "env NODE_ENV=test mocha --timeout 10000 || exit 0"
   },
   "author": "",
   "license": "ISC",

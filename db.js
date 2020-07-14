@@ -16,7 +16,10 @@ const InitiateMongoServer = async () => {   //async ensures that the function re
   }
 };
 
+//console.log(JSON.stringify(process.env.NODE_ENV));
+
 if (process.env.NODE_ENV === 'test') {
+  console.log("MOCKING");
   var Mockgoose = require('mockgoose').Mockgoose;
   var mockgoose = new Mockgoose(mongoose);
   mockgoose.prepareStorage().then(function() {
