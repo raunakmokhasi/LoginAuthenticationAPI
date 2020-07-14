@@ -20,7 +20,6 @@ app.listen(PORT, (req, res) => {
   //console.log(`The server has been initiated at PORT ${PORT}`);
   console.log();
   winstonLogger.log('info',`The server has been initiated at PORT ${PORT}`);
-  //winstonLogger.log('error',`asdasdsadas`); //Level, Message, Parameters
 });
 
 
