@@ -65,8 +65,6 @@ describe('Signup Function Test', function() {
            .end(done);
     });
 
-
-
 });
 
 describe('Login Function Test', function() {
