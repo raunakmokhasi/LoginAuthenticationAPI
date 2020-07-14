@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 4000;
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  res.json({ message: "The API has started working!" });
+  res.json({ version: '1.0.0', message: "The API has started working!" });
   winstonLogger.log('info',`The API has started working!`);
 });
 
@@ -40,7 +40,7 @@ app.post(
   [
     check("username", "Please enter a valid Username").not().isEmpty(),
     check("email", "Please enter a valid Email").isEmail(),
-    check("password", "Please enter a valid Password").isLength({ min: 5 })
+    check("password", "Please enter a valid Password (of atleast 5 characters long)").isLength({ min: 5 })
   ],
   async (req, res) => {
     const errors = validationResult(req); //Extracts the validation errors from the Express request and makes them available in a Result object.

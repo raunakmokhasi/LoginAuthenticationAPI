@@ -4,8 +4,20 @@ const { header } = require('express-validator');
 const expect = require('chai').expect;
 const assert = require('chai').assert;
 
+describe('Server Test', function() {
+    it('API should return the correct version number', function(done) {
+      request(app)
+        .get('/')
+        .end(function(err, response) {
+          expect(response.body.version).to.be.ok;
+          expect(response.statusCode).to.equal(200);
+          expect(response.body.message).to.deep.equal("The API has started working!");
+          done();
+        });
+    });
+  });
 
-describe('Signup Function Test', function() {
+describe('Signup Function Test', function() {   
     it('The test should PASS if the SIGNUP Credentials are valid but USER ALREADY EXISTS', function(done) {
         request(app)
            .post('/signup')
@@ -22,6 +34,39 @@ describe('Signup Function Test', function() {
             })
            .end(done);
     }); 
+
+    it('The test should PASS if the SIGNUP Credentials are invalid due to email', function(done) {
+        request(app)
+           .post('/signup')
+           .set('Accept', 'application/json')
+           .set('Content-Type', 'application/json')
+           .send({ username: 'arsenal', email: 'manu', password: 'chelsea123' })
+           .expect(300)   //Test for Error: Multiple Choices 300 - Invalid Email
+           .expect('Content-Type', /json/)
+           .expect(function(err, response) {
+                expect(err).not.to.be.empty;
+                expect(err.text).to.deep.equal('{"errors":[{"value":"manu","msg":"Please enter a valid Email","param":"email","location":"body"}]}');            
+            })
+           .end(done);
+    });
+
+    it('The test should PASS if the SIGNUP Credentials are invalid due to password length less than 5', function(done) {
+        request(app)
+           .post('/signup')
+           .set('Accept', 'application/json')
+           .set('Content-Type', 'application/json')
+           .send({ username: 'galaxy', email: 'hel@lo.com', password: 'hel' })
+           .expect(300)   //Test for Error: Multiple Choices 300 - Invalid Password (less than length 5)
+           .expect('Content-Type', /json/)
+           .expect(function(err, response) {
+                expect(err).not.to.be.empty; 
+                expect(err.text).to.deep.equal('{"errors":[{"value":"hel","msg":"Please enter a valid Password (of atleast 5 characters long)","param":"password","location":"body"}]}');
+            })
+           .end(done);
+    });
+
+
+
 });
 
 describe('Login Function Test', function() {
