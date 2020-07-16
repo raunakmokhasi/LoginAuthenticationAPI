@@ -66,7 +66,7 @@ For further information regarding Swagger, please check out –
 
 **Other Notes –**
 
-_I have used Winston to create the Logger and Mockgoose in-order to mock the MongoDB operations during testing (using Chai and Supertest)._
+_I have used Winston to create the Logger Template and Mockgoose in-order to mock the MongoDB operations during testing (using Mocha, Chai and Supertest)._
 
 **--- Logic behind MOCKGOOSE/MONGO-MOCK/MongoDB-Memory-Server ---**
 
@@ -75,6 +75,11 @@ They are simplified in-memory databases that allow you to perform actions on Mon
 The primary purpose of them is to allow you to mock out your mongoose database during testing so that you do not have to create a new database for every test and then delete that same database afterwards. In these modules, the process of mocking works by recording database data used for a test by listening for all queries and responses during the initial testing stage. That information is stored (as mocking data) and is used in all future executions of the test in different environments. If over time, the tests navigation changes or queries are different, mocking data will need to be re-recorded. In case that during test execution, the tests need some data that was not recorded during the recording stage, that query will use real database data sources to get the answer.
 
 In these modules, the in-memory database is a type of purpose-built database that relies primarily on memory for data storage, in contrast to databases that store data on disk or SSDs. In-memory databases are designed to attain minimal response time by eliminating the need to access disks. Because all data is stored and managed exclusively in main memory, it is at risk of being lost upon a process or server failure. In-memory databases can persist data on disks by storing each operation in a log or by taking snapshots. Thus, they are useful in mocking actual database operations without making a copy of the whole database.
+
+
+**--- Why I have created a Logging Template ---**
+
+This is mainly done in the 'loggerTemplate.js' file to ensure structured logging output. Sometimes, logs tend to be very subjective and up to the coder's views. Ensuring it is in a particular format through function parameters ensures that there are no discrepancies.
 
 **References**
 
