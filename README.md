@@ -85,7 +85,7 @@ This is mainly done in the 'loggerTemplate.js' file to ensure structured logging
 
 1. [https://expressjs.com/](https://expressjs.com/) / [https://www.npmjs.com/package/express](https://www.npmjs.com/package/express)
 2. [https://express-validator.github.io/docs/](https://express-validator.github.io/docs/) / [https://www.npmjs.com/package/express-validator](https://www.npmjs.com/package/express-validator)
-3. [https://medium.com/javascript-in-plain-english/how-bcryptjs-works-90ef4cb85bf4 /](https://medium.com/javascript-in-plain-english/how-bcryptjs-works-90ef4cb85bf4%20/)[https://www.npmjs.com/package/bcryptjs](https://www.npmjs.com/package/bcryptjs)
+3. [https://www.npmjs.com/package/bcryptjs](https://www.npmjs.com/package/bcryptjs)
 4. [https://www.npmjs.com/package/jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 5. [https://www.npmjs.com/package/body-parser](https://www.npmjs.com/package/body-parser)
 6. [https://www.npmjs.com/package/mongoose](https://www.npmjs.com/package/mongoose)
