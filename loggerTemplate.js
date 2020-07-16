@@ -36,30 +36,41 @@ const logger = winston.createLogger({
 function loggerTemplate (param1, param2 = "", param3 = "") {
     //param1 is Log Level -> "error", "warn", "info" (default is "info")
     //param2 is Error/Warn/Info Location
-    //param3 is Log Details
+    //param3 is Log Details (Can be OBJECT)
+
+    var param3String = "";
+    if ((typeof(param3) === 'object') && (param3 !== null)){
+      for (const property in param3) {
+        param3String += ` ${property} -> ${param3[property]} ,`;
+      }
+    }
+    else {
+      param3String = param3;
+    }
+
     if(typeof(param1) === "string"){
         param1 = param1.toLowerCase();
         switch(param1) {
 
             case "error": {
-                logger.log('error', `Error at Location: ${param2} | Details are as follows: ${param3}`);
+                logger.log('error', `Error at Location: ${param2} | Details are as follows: ${param3String}`);
             } break;
 
             case "warn": {
-                logger.log('warn', `Warning at Location: ${param2} | Details are as follows: ${param3}`);
+                logger.log('warn', `Warning at Location: ${param2} | Details are as follows: ${param3String}`);
             } break;
 
             case "info": {
-                logger.log('info', `Information Log at Location: ${param2} | Details are as follows: ${param3}`);
+                logger.log('info', `Information Log at Location: ${param2} | Details are as follows: ${param3String}`);
             } break;
 
             default: {
-                logger.log('info', `Custom Log Level: ${param1} | Log at Location: ${param2} | Details are as follows: ${param3}`);
+                logger.log('info', `Custom Log Level: ${param1} | Log at Location: ${param2} | Details are as follows: ${param3String}`);
             } break;
         }
     }
     else { 
-        logger.log('info', `${param1} | ${param2} | ${param3}`);
+        logger.log('info', `${param1} | ${param2} | ${param3String}`);
     }
 }
 
